@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { useFirebase } from "../context/FirebaseContext"; // ✅ use hook
+import { useFirebase } from "../context/FirebaseContext"; 
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useFirebase(); 

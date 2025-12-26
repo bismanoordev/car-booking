@@ -16,24 +16,14 @@ function BasicExample() {
     "https://stimg.cardekho.com/images/carexteriorimages/630x420/MG/Hector/13125/1765801652897/exterior-image-164.jpg",
     "https://images.financialexpressdigital.com/2020/09/mahindra-thar.jpg",
     "https://carsales.pxcrush.net/carsales/cars/dealer/7orlvr1e6hr9lhuvnjre6wvz6.jpg?pxc_method=fitfill&pxc_bgtype=self&pxc_size=720,480",
-    "https://hips.hearstapps.com/hmg-prod/images/ineos-automotive-grenadier-1593568374.jpg?crop=0.623xw:0.697xh;0.245xw,0.207xh&resize=640:*",
-    "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25710326/ToyotaLandCruiserROX_01_2.jpg?quality=90&strip=all",
+    "https://hips.hearstapps.com/hmg-prod/images/ineos-automotive-grenadier-1593568374.jpg",
+    "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25710326/ToyotaLandCruiserROX_01_2.jpg",
     "https://www.gari.pk/images/new/cars/2022-05/1915_1_71176.jpg",
   ];
 
   const headings = [
-    "ALTROZ",
-    "BREZZA",
-    "CIAZ",
-    "DUSTER",
-    "FIGO",
-    "GLE",
-    "HECTOR",
-    "THAR",
-    "JIMNY",
-    "LAND ROVER",
-    "TOYOTA",
-    "SUZUKI",
+    "ALTROZ","BREZZA","CIAZ","DUSTER","FIGO","GLE",
+    "HECTOR","THAR","JIMNY","LAND ROVER","TOYOTA","SUZUKI",
   ];
 
   const descriptions = [
@@ -51,101 +41,100 @@ function BasicExample() {
     "Suzuki efficient aur reliable cars banata hai.",
   ];
 
-  const totalCards = 12;
-
   return (
     <>
-    <Navbar/>
-    <div
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "#FFFFFF",
-        padding: "20px",
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-        gap: "20px",
-        justifyItems: "center",
-        alignContent: "start",
-      }}
-    >
-      {Array.from({ length: totalCards }).map((_, index) => (
-        <Card
-          key={index}
-          style={{
-            width: "19rem",
-            borderRadius: "12px",
-            overflow: "hidden",
-            border: "none",
-            backgroundColor: "#0F1016",
-            boxShadow: "0 8px 20px rgba(255, 205, 3, 0.29)",
-            transition: "transform 0.3s ease, box-shadow 0.3s ease",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "translateY(-6px)";
-            e.currentTarget.style.boxShadow =
-              "0 14px 30px rgba(255, 205, 3, 0.37)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "translateY(0)";
-            e.currentTarget.style.boxShadow =
-              "0 8px 20px rgba(255, 205, 3, 0.23)";
-          }}
-        >
-          <Card.Img
-            variant="top"
-            src={images[index % images.length]}
+      <Navbar />
+
+      <div
+        style={{
+          minHeight: "100vh",
+          backgroundColor: "#FFFFFF",
+          padding: "clamp(14px, 4vw, 20px)", 
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+          gap: "clamp(14px, 4vw, 20px)",
+          justifyItems: "center",
+          alignContent: "start",
+        }}
+      >
+        {Array.from({ length: 12 }).map((_, index) => (
+          <Card
+            key={index}
             style={{
-              height: "190px",
-              objectFit: "cover",
               width: "100%",
+              maxWidth: "19rem", 
+              borderRadius: "12px",
+              overflow: "hidden",
+              border: "none",
+              backgroundColor: "#0F1016",
+              boxShadow: "0 8px 20px rgba(255, 205, 3, 0.29)",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
             }}
-          />
-
-          <Card.Body style={{ padding: "14px" }}>
-            <Card.Title
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-6px)";
+              e.currentTarget.style.boxShadow =
+                "0 14px 30px rgba(255, 205, 3, 0.37)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow =
+                "0 8px 20px rgba(255, 205, 3, 0.23)";
+            }}
+          >
+            <Card.Img
+              variant="top"
+              src={images[index]}
               style={{
-                fontWeight: "700",
-                fontSize: "18px",
-                color: "#FFFFFF",
-                marginBottom: "6px",
-                textAlign: "center",
+                height: "clamp(160px, 30vw, 190px)", 
+                objectFit: "cover",
+                width: "100%",
               }}
-            >
-              {headings[index % headings.length]} 
-            </Card.Title>
+            />
 
-            <Card.Text
-              style={{
-                fontSize: "14px",
-                color: "#797878ff",
-                marginBottom: "12px",
-                textAlign: "center",
-              }}
-            >
-              {descriptions[index % descriptions.length]}{" "}
-              
-            </Card.Text>
-
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <Button
-                onClick={() => navigate(`/car/${index}`)}
+            <Card.Body style={{ padding: "clamp(12px, 3vw, 14px)" }}>
+              <Card.Title
                 style={{
-                  backgroundColor: "#FFCC03",
-                  border: "none",
-                  color: "#0F1016",
-                  fontWeight: "600",
-                  padding: "6px 14px",
-                  fontSize: "14px",
-                  borderRadius: "8px",
+                  fontWeight: "700",
+                  fontSize: "clamp(16px, 4vw, 18px)",
+                  color: "#FFFFFF",
+                  marginBottom: "6px",
+                  textAlign: "center",
                 }}
               >
-                View
-              </Button>
-            </div>
-          </Card.Body>
-        </Card>
-      ))}
-    </div>
+                {headings[index]}
+              </Card.Title>
+
+              <Card.Text
+                style={{
+                  fontSize: "clamp(13px, 3.5vw, 14px)",
+                  color: "#797878ff",
+                  marginBottom: "12px",
+                  textAlign: "center",
+                }}
+              >
+                {descriptions[index]}
+              </Card.Text>
+
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Button
+                  onClick={() => navigate(`/car/${index}`)}
+                  style={{
+                    backgroundColor: "#FFCC03",
+                    border: "none",
+                    color: "#0F1016",
+                    fontWeight: "600",
+                    padding: "6px 14px",
+                    fontSize: "14px",
+                    borderRadius: "8px",
+                  }}
+                >
+                  View
+                </Button>
+              </div>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
     </>
   );
 }

@@ -1,11 +1,13 @@
 .home {
   background-image: url("https://cdn4.singleinterface.com/files/enterprise/coverphoto/76409/TML-Website-Banner-07-10-25-03-56-56.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
-  height: 99%;
+  background-size: cover;      
+  background-position: center; 
   width: 100%;
+  min-height: 100vh;            
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   z-index: -1;
+  padding-top: 70px;
 }

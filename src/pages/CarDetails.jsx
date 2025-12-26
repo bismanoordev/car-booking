@@ -107,82 +107,98 @@ export default function CarDetails() {
 
   return (
     <>
-      <div>
-        <Navbar />
+      <Navbar />
+
+      <div
+        style={{
+          minHeight: "100vh",
+          backgroundColor: "#FFFFFF",
+          padding: "clamp(16px, 4vw, 30px)",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <div
           style={{
-            minHeight: "100vh",
-            backgroundColor: "#FFFFFF",
-            color: "#fff",
-            padding: "30px",
-            display: "flex",
-            justifyContent: "center",
+            width: "100%",
+            maxWidth: "720px", 
+            textAlign: "center",
+            backgroundColor: "#0F1016",
+            padding: "clamp(16px, 4vw, 25px)",
+            borderRadius: "16px",
           }}
         >
-          <div
+          <img
+            src={car.image}
+            alt={car.name}
             style={{
-              width: "50%",
-              textAlign: "center",
-              backgroundColor: "#0F1016",
-              padding: "25px",
+              width: "100%",
               borderRadius: "16px",
+              marginBottom: "10px",
+              maxHeight: "clamp(220px, 45vw, 420px)", 
+              objectFit: "cover",
+            }}
+          />
+
+          <h2
+            style={{
+              color: "#aaa",
+              fontSize: "clamp(20px, 5vw, 26px)", 
             }}
           >
-            <img
-              src={car.image}
-              alt={car.name}
+            {car.name}
+          </h2>
+
+          <p
+            style={{
+              color: "#aaa",
+              paddingBottom: "15px",
+              fontSize: "clamp(14px, 3.8vw, 16px)",
+              lineHeight: "1.6",
+            }}
+          >
+            {car.description}
+          </p>
+
+          {/* Buttons */}
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap", 
+              justifyContent: "center",
+              gap: "12px",
+              marginTop: "20px",
+            }}
+          >
+            <Button
+              href="/cards"
               style={{
-                width: "100%",
-                borderRadius: "16px",
-                marginBottom: "10px",
+                backgroundColor: "#FFCC03",
+                color: "#0F1016",
+                border: "none",
+                padding: "clamp(10px, 3vw, 12px) clamp(40px, 10vw, 100px)",
+                borderRadius: "8px",
+                fontWeight: "600",
+                cursor: "pointer",
               }}
-            />
-            <h2 style={{ color: "#aaa" }}>{car.name}</h2>
-            <p style={{ color: "#aaa", paddingBottom: "15px" }}>
-              {car.description}
-            </p>
+            >
+              Back
+            </Button>
 
-           
-              <Button
-                href="/cards"
-                style={{
-                  backgroundColor: "#FFCC03",
-                  color: "#0F1016",
-                  border: "none",
-                  padding: "10px 100px",
-                  marginTop: "30px",
-                  margin:"6px",
-                  borderRadius: "8px",
-                  fontWeight: "600",
-                  transition: "0.3s",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => (e.target.style.opacity = "0.85")}
-                onMouseLeave={(e) => (e.target.style.opacity = "1")}
-              >
-                Back
-              </Button>
-
-              <Button
-                href="/booking"
-                style={{
-                  backgroundColor: "#FFCC03",
-                  color: "#0F1016",
-                  border: "none",
-                  padding: "10px 90px",
-                  marginTop: "30px",
-                  margin:"6px",
-                  borderRadius: "8px",
-                  fontWeight: "600",
-                  transition: "0.3s",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => (e.target.style.opacity = "0.85")}
-                onMouseLeave={(e) => (e.target.style.opacity = "1")}
-              >
-                Book Now
-              </Button>
-            
+            <Button
+              href="/booking"
+              style={{
+                backgroundColor: "#FFCC03",
+                color: "#0F1016",
+                border: "none",
+                padding: "clamp(10px, 3vw, 12px) clamp(40px, 10vw, 90px)",
+                borderRadius: "8px",
+                fontWeight: "600",
+                cursor: "pointer",
+              }}
+            >
+              Book Now
+            </Button>
           </div>
         </div>
       </div>

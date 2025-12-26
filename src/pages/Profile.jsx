@@ -102,25 +102,53 @@ function Input({ label, value }) {
   );
 }
 
-/* -------- Styles -------- */
+
 const pageStyle = {
   minHeight: "100vh",
-  // top:"0px",
-  // background: "#F6F6F6",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  padding: "16px",
 };
 
 const cardStyle = {
-  width: "360px",
+  width: "100%",
+  maxWidth: "360px", 
   background: "#fff",
   borderRadius: "20px",
-  padding: "20px",
+  padding: "clamp(16px, 4vw, 20px)", 
   boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
 };
 
-const avatarStyle = { width: "90px", height: "90px", borderRadius: "50%" };
-const inputStyle = { width: "93%", padding: "10px", marginTop: "6px", borderRadius: "10px", border: "1px solid #ddd" };
-const saveBtn = { width: "100%", background: "#FFCC03", border: "none", padding: "12px", borderRadius: "30px", fontWeight: "bold", cursor: "pointer", marginTop: "15px" };
-const logoutBtn = { ...saveBtn, background: "#eee" };
+const avatarStyle = {
+  width: "clamp(70px, 20vw, 90px)",
+  height: "clamp(70px, 20vw, 90px)",
+  borderRadius: "50%",
+};
+
+const inputStyle = {
+  width: "100%",
+  padding: "clamp(9px, 3vw, 10px)",
+  marginTop: "6px",
+  borderRadius: "10px",
+  border: "1px solid #ddd",
+  fontSize: "14px",
+};
+
+const saveBtn = {
+  width: "100%",
+  background: "#FFCC03",
+  border: "none",
+  padding: "clamp(10px, 3vw, 12px)",
+  borderRadius: "30px",
+  fontWeight: "bold",
+  cursor: "pointer",
+  marginTop: "15px",
+  fontSize: "clamp(14px, 4vw, 16px)",
+};
+
+const logoutBtn = {
+  ...saveBtn,
+  background: "#eee",
+};
+

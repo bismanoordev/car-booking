@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email format").required("Email is required"),
   password: yup.string().required("Password is required"),
@@ -24,28 +23,24 @@ const Login = () => {
     setError,
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
   });
 
   const onSubmit = async (data) => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
-      toast.success(" Login Successful");
+      toast.success("Login Successful");
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         setError("email", { message: "User not found" });
-        toast.error(" User not found");
+        toast.error("User not found");
       } else if (error.code === "auth/wrong-password") {
         setError("password", { message: "Wrong password" });
-        toast.error(" Wrong password");
+        toast.error("Wrong password");
       } else if (error.code === "auth/invalid-email") {
         setError("email", { message: "Invalid email format" });
-        toast.error(" Invalid email format");
+        toast.error("Invalid email format");
       } else {
-        toast.error(" error" + error.message);
+        toast.error(error.message);
       }
     }
   };
@@ -53,6 +48,7 @@ const Login = () => {
   return (
     <>
       <Navbar />
+
       <div
         style={{
           minHeight: "100vh",
@@ -60,13 +56,15 @@ const Login = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          padding: "16px", 
         }}
       >
         <div
           style={{
-            width: "360px",
+            width: "100%",
+            maxWidth: "360px", 
             backgroundColor: "#FFFFFF",
-            padding: "30px",
+            padding: "clamp(20px, 5vw, 30px)", 
             borderRadius: "14px",
             boxShadow: "0 20px 40px rgba(168, 158, 21, 0.56)",
           }}
@@ -74,9 +72,10 @@ const Login = () => {
           <h2
             style={{
               textAlign: "center",
-              marginBottom: "25px",
+              marginBottom: "22px",
               color: "#0F1016",
               fontWeight: "700",
+              fontSize: "clamp(20px, 5vw, 24px)", 
             }}
           >
             Welcome Back
@@ -86,14 +85,14 @@ const Login = () => {
             type="email"
             placeholder="Email"
             {...register("email")}
-            autoComplete="off"
             style={{
-              width: "90%",
-              padding: "12px",
+              width: "93%",
+              padding: "clamp(10px, 3vw, 12px)",
               marginBottom: "4px",
               borderRadius: "8px",
               border: "1px solid #ddd",
               outline: "none",
+              fontSize: "14px",
             }}
           />
           {errors.email && (
@@ -106,14 +105,14 @@ const Login = () => {
             type="password"
             placeholder="Password"
             {...register("password")}
-            autoComplete="new-password"
             style={{
-              width: "90%",
-              padding: "12px",
+              width: "93%",
+              padding: "clamp(10px, 3vw, 12px)",
               marginBottom: "4px",
               borderRadius: "8px",
               border: "1px solid #ddd",
               outline: "none",
+              fontSize: "14px",
             }}
           />
           {errors.password && (
@@ -126,11 +125,12 @@ const Login = () => {
             onClick={handleSubmit(onSubmit)}
             disabled={isSubmitting}
             style={{
-              width: "98%",
-              padding: "12px",
+              width: "100%",
+              padding: "clamp(10px, 3vw, 12px)",
               backgroundColor: "#FFCC03",
               color: "#0F1016",
               fontWeight: "600",
+              fontSize: "clamp(14px, 4vw, 16px)",
               border: "none",
               borderRadius: "8px",
               cursor: "pointer",

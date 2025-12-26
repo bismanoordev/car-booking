@@ -83,74 +83,87 @@ const AddNewBooking = () => {
   const styles = {
     page: {
       minHeight: "100vh",
-      margin: "50px",
+      padding: "clamp(16px, 5vw, 50px)", 
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
       background: "#FFFFFF",
       fontFamily: "Arial, sans-serif",
     },
+
     card: {
       background: "#FFFFFF",
-      padding: "30px",
+      padding: "clamp(20px, 5vw, 30px)", 
       borderRadius: "10px",
-      width: "420px",
+      width: "100%", 
+      maxWidth: "420px", 
       boxShadow: "0 0 20px rgba(231, 198, 66, 0.66)",
     },
+
     label: {
       color: "#201f1fff",
-      fontSize: "12px",
+      fontSize: "clamp(11px, 3vw, 12px)",
       marginBottom: "5px",
       display: "block",
       textAlign: "left",
     },
+
     input: {
-      width: "95%",
+      width: "100%", 
       padding: "12px",
       borderRadius: "5px",
       border: "none",
-      marginBottom: "15px",
+      marginBottom: "12px",
       background: "#f3f0f0ff",
-      fontSize: "14px",
-      border: "#161616ff",
+      fontSize: "clamp(13px, 3.5vw, 14px)",
     },
+
     error: {
       color: "red",
       fontSize: "10px",
       marginBottom: "8px",
+      display: "block",
     },
+
     row: {
       display: "flex",
       gap: "10px",
+      flexWrap: "wrap",
     },
+
     select: {
-      flex: 1,
+      flex: "1 1 30%",
+      minWidth: "80px",
       padding: "12px",
       borderRadius: "5px",
       background: "#f3f0f0ff",
       border: "none",
     },
+
+    buttonRow: {
+      display: "flex",
+      gap: "10px",
+      flexWrap: "wrap",
+      marginTop: "10px",
+    },
+
     button: {
-      width: "48%",
+      flex: "1 1 48%", 
       padding: "14px",
       borderRadius: "5px",
       fontWeight: "bold",
-      fontSize: "16px",
+      fontSize: "clamp(14px, 4vw, 16px)",
       cursor: "pointer",
-      marginTop: "10px",
     },
+
     submitButton: {
       background: "#FFCC03",
       border: "none",
     },
+
     cancelButton: {
       background: "#FFCC03",
       border: "none",
-      marginLeft: "4%",
-    },
-    buttonRow: {
-      display: "flex",
-      justifyContent: "space-between",
     },
   };
 
