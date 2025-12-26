@@ -109,7 +109,7 @@ const AddNewBooking = () => {
     },
 
     input: {
-      width: "100%", 
+      width: "94%", 
       padding: "12px",
       borderRadius: "5px",
       border: "none",
