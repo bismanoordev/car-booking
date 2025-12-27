@@ -11,3 +11,12 @@
   z-index: -1;
   padding-top: 70px;
 }
+
+
+@media (max-width: 768px) {
+  .home {
+    background-size: contain;   
+    background-position: top;   
+    min-height: 60vh;          
+  }
+}
