@@ -15,8 +15,9 @@
 
 @media (max-width: 768px) {
   .home {
-    background-size: contain;   
-    background-position: top;   
-    min-height: 60vh;          
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3buuUeIotLu38IOCNZPTNuLRloh3Uq-2QmQ&s");
+    background-size: cover;      
+    background-position: center;
+    min-height: 100vh;           
   }
 }
