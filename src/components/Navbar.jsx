@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useFirebase } from "../context/FirebaseContext";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const { user } = useFirebase();
+  const { user, logoutUser } = useFirebase();
   const [isMobile, setIsMobile] = useState(false);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkScreen = () => {
@@ -45,23 +47,76 @@ function Navbar() {
       {/* Desktop Menu */}
       {!isMobile && (
         <>
-          <div style={{ display: "flex", gap: "40px" }}>
-            {["Home", ...(user ? ["Cars", "AddCar", "Profile"] : [])].map(
-              (item) => (
-                <Link
-                  key={item}
-                  to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+          <div style={{ display: "flex", gap: "40px", alignItems: "center" }}>
+            {["Home", ...(user ? ["Cars", "AddCar"] : [])].map((item) => (
+              <Link
+                key={item}
+                to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                style={{
+                  color: "#FFFFFF",
+                  textDecoration: "none",
+                  fontWeight: "500",
+                }}
+                onMouseEnter={(e) => (e.target.style.color = "#FFCC03")}
+                onMouseLeave={(e) => (e.target.style.color = "#FFFFFF")}
+              >
+                {item}
+              </Link>
+            ))}
+
+            {/* Profile Avatar */}
+            {user && (
+              <div style={{ position: "relative" }}>
+                <img
+                  src={user.photoURL || "https://i.pravatar.cc/40"}
+                  alt="profile"
+                  onClick={() => setOpen(!open)}
                   style={{
-                    color: "#FFFFFF",
-                    textDecoration: "none",
-                    fontWeight: "500",
+                    width: "38px",
+                    height: "38px",
+                    borderRadius: "50%",
+                    cursor: "pointer",
+                    border: "2px solid #FFCC03",
                   }}
-                  onMouseEnter={(e) => (e.target.style.color = "#FFCC03")}
-                  onMouseLeave={(e) => (e.target.style.color = "#FFFFFF")}
-                >
-                  {item}
-                </Link>
-              )
+                />
+
+                {/* Dropdown */}
+                {open && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "50px",
+                      right: "0",
+                      background: "#0F1016",
+                      borderRadius: "12px",
+                      width: "160px",
+                      boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <div
+                      onClick={() => {
+                        navigate("/profile");
+                        setOpen(false);
+                      }}
+                      style={dropdownItem}
+                    >
+                      Account
+                    </div>
+
+                    <div
+                      onClick={async () => {
+                        await logoutUser(); 
+                        setOpen(false);
+                        navigate("/login"); 
+                      }}
+                      style={{ ...dropdownItem, color: "#FFFFFF" }}
+                    >
+                      Logout
+                    </div>
+                  </div>
+                )}
+              </div>
             )}
           </div>
 
@@ -107,7 +162,7 @@ function Navbar() {
             width: "75%",
             textAlign: "center",
             position: "absolute",
-            top: "70px",
+            top: "60px",
             right: "20px",
             background: "#0F1016",
             borderRadius: "14px",
@@ -145,3 +200,10 @@ function Navbar() {
 }
 
 export default Navbar;
+
+const dropdownItem = {
+  padding: "10px 14px",
+  cursor: "pointer",
+  fontWeight: "500",
+  color: "#FFFFFF",
+};
