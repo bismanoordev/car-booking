@@ -3,8 +3,7 @@ import { useFirebase } from "../context/FirebaseContext";
 import Navbar from "../components/Navbar";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, Link } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -55,7 +54,6 @@ const Login = () => {
 
       <div
         style={{
-          // minHeight: "100vh",
           backgroundColor: "#FFFFFF",
           display: "flex",
           alignItems: "center",
@@ -71,12 +69,15 @@ const Login = () => {
             padding: "clamp(20px, 5vw, 30px)", 
             borderRadius: "14px",
             boxShadow: "0 20px 40px rgba(168, 158, 21, 0.56)",
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px", // 🔹 inputs & button ke beech gap
           }}
         >
           <h2
             style={{
               textAlign: "center",
-              marginBottom: "22px",
+              marginBottom: "12px",
               color: "#FFFFFF",
               fontWeight: "700",
               fontSize: "clamp(20px, 5vw, 24px)", 
@@ -92,7 +93,6 @@ const Login = () => {
             style={{
               width: "93%",
               padding: "clamp(10px, 3vw, 12px)",
-              marginBottom: "4px",
               borderRadius: "8px",
               border: "1px solid #ddd",
               outline: "none",
@@ -100,7 +100,7 @@ const Login = () => {
             }}
           />
           {errors.email && (
-            <p style={{ color: "red", fontSize: "12px", marginBottom: "8px" }}>
+            <p style={{ color: "red", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>
               {errors.email.message}
             </p>
           )}
@@ -112,7 +112,6 @@ const Login = () => {
             style={{
               width: "93%",
               padding: "clamp(10px, 3vw, 12px)",
-              marginBottom: "4px",
               borderRadius: "8px",
               border: "1px solid #ddd",
               outline: "none",
@@ -120,7 +119,7 @@ const Login = () => {
             }}
           />
           {errors.password && (
-            <p style={{ color: "red", fontSize: "12px", marginBottom: "8px" }}>
+            <p style={{ color: "red", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>
               {errors.password.message}
             </p>
           )}
@@ -145,6 +144,21 @@ const Login = () => {
           >
             {isSubmitting ? "Logging in..." : "Login"}
           </button>
+
+          {/* 🔹 Already have an account */}
+          <p
+            style={{
+              textAlign: "center",
+              fontSize: "clamp(12px, 3.5vw, 13px)",
+              color: "#757373",
+              marginTop: "8px",
+            }}
+          >
+            Don't have an account?{" "}
+            <Link to="/signup" style={{ color: "#FFCC03", cursor: "pointer" }}>
+              Sign Up
+            </Link>
+          </p>
         </div>
       </div>
     </>
