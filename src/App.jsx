@@ -11,6 +11,7 @@ import AddNewBooking from "./pages/Booking";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 import { Toaster } from "react-hot-toast";
+import AddCar from "./pages/AddCar";
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
           />
 
           <Route
-            path="/cards"
+            path="/cars"
             element={
               <PrivateRoute>
                 <Cards />
@@ -52,6 +53,15 @@ function App() {
             element={
               <PrivateRoute>
                 <CarDetails />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/addcar"
+            element={
+              <PrivateRoute>
+                <AddCar />
               </PrivateRoute>
             }
           />

@@ -66,6 +66,7 @@ const AddNewBooking = () => {
       if (res.ok) {
         toast.success("Booking saved to Firebase");
         reset();
+        navigate("/cards", { replace: true });
       } else {
         toast.error("Booking not saved ");
       }
@@ -77,13 +78,11 @@ const AddNewBooking = () => {
 
   const handleCancel = () => {
     if (carId) navigate(`/car/${carId}`);
-    else navigate("/cards");
+    else navigate("/cars");
   };
-
   const styles = {
     page: {
-      minHeight: "100vh",
-      padding: "clamp(16px, 5vw, 50px)", 
+      padding: "clamp(12px, 4vw, 50px)",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -92,16 +91,16 @@ const AddNewBooking = () => {
     },
 
     card: {
-      background: "#FFFFFF",
-      padding: "clamp(20px, 5vw, 30px)", 
+      background: "#0F1016",
+      padding: "clamp(16px, 4vw, 30px)",
       borderRadius: "10px",
-      width: "100%", 
-      maxWidth: "420px", 
+      width: "100%",
+      maxWidth: "420px",
       boxShadow: "0 0 20px rgba(231, 198, 66, 0.66)",
     },
 
     label: {
-      color: "#201f1fff",
+      color: "#FFFFFF",
       fontSize: "clamp(11px, 3vw, 12px)",
       marginBottom: "5px",
       display: "block",
@@ -109,8 +108,9 @@ const AddNewBooking = () => {
     },
 
     input: {
-      width: "94%", 
-      padding: "12px",
+      width: "100%",
+      maxWidth: "380px",
+      padding: "clamp(10px, 3vw, 12px)",
       borderRadius: "5px",
       border: "none",
       marginBottom: "12px",
@@ -120,21 +120,21 @@ const AddNewBooking = () => {
 
     error: {
       color: "red",
-      fontSize: "10px",
+      fontSize: "clamp(10px, 3vw, 12px)",
       marginBottom: "8px",
       display: "block",
     },
 
     row: {
       display: "flex",
-      gap: "10px",
+      gap: "clamp(8px, 3vw, 10px)",
       flexWrap: "wrap",
     },
 
     select: {
       flex: "1 1 30%",
       minWidth: "80px",
-      padding: "12px",
+      padding: "clamp(10px, 3vw, 12px)",
       borderRadius: "5px",
       background: "#f3f0f0ff",
       border: "none",
@@ -142,14 +142,14 @@ const AddNewBooking = () => {
 
     buttonRow: {
       display: "flex",
-      gap: "10px",
+      gap: "clamp(8px, 3vw, 10px)",
       flexWrap: "wrap",
       marginTop: "10px",
     },
 
     button: {
-      flex: "1 1 48%", 
-      padding: "14px",
+      flex: "1 1 48%",
+      padding: "clamp(12px, 3vw, 14px)",
       borderRadius: "5px",
       fontWeight: "bold",
       fontSize: "clamp(14px, 4vw, 16px)",

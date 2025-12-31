@@ -14,7 +14,7 @@ export default function Profile() {
 
   useEffect(() => {
     if (!loading) {
-      if (!user) return navigate("/login"); 
+      if (!user) return navigate("/login");
       setName(user.displayName || "");
       setPhoto(user.photoURL || "");
     }
@@ -39,57 +39,68 @@ export default function Profile() {
   if (!user) return null;
 
   return (
-    
-   <div>
-     <Navbar/>
-    <div style={pageStyle}>
-      <div style={cardStyle}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <FaArrowLeft onClick={() => navigate(-1)} style={{ cursor: "pointer" }} />
-          <FaEdit
-            onClick={() => setEditing(!editing)}
-            style={{ marginLeft: "auto", cursor: "pointer" }}
-          />
-        </div>
+    <div>
+      <Navbar />
+      <div style={pageStyle}>
+        <div style={cardStyle}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <FaArrowLeft
+              onClick={() => navigate(-1)}
+              style={{ cursor: "pointer", color: "#FFCC03" }}
+            />
+            <FaEdit
+              onClick={() => setEditing(!editing)}
+              style={{
+                marginLeft: "auto",
+                cursor: "pointer",
+                color: "#FFCC03",
+              }}
+            />
+          </div>
 
-        <div style={{ textAlign: "center", marginTop: "15px" }}>
-          <img
-            src={photo || "https://i.pravatar.cc/150"}
-            alt="profile"
-            style={avatarStyle}
-          />
+          <div
+            style={{ textAlign: "center", marginTop: "15px", color: "#FFFFFF" }}
+          >
+            <img
+              src={photo || "https://i.pravatar.cc/150"}
+              alt="profile"
+              style={avatarStyle}
+            />
+
+            {editing && (
+              <input
+                placeholder="Photo URL"
+                value={photo}
+                onChange={(e) => setPhoto(e.target.value)}
+                style={inputStyle}
+              />
+            )}
+
+            {editing ? (
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                style={inputStyle}
+              />
+            ) : (
+              <h3>{user.displayName || "User"}</h3>
+            )}
+          </div>
+
+          <Input label="Email" value={user.email} />
 
           {editing && (
-            <input
-              placeholder="Photo URL"
-              value={photo}
-              onChange={(e) => setPhoto(e.target.value)}
-              style={inputStyle}
-            />
+            <button style={saveBtn} onClick={handleSave}>
+              Save Changes
+            </button>
           )}
 
-          {editing ? (
-            <input value={name} onChange={(e) => setName(e.target.value)} style={inputStyle} />
-          ) : (
-            <h3>{user.displayName || "User"}</h3>
-          )}
-        </div>
-
-        <Input label="Email" value={user.email} />
-
-        {editing && (
-          <button style={saveBtn} onClick={handleSave}>
-            Save Changes
+          <button style={logoutBtn} onClick={handleLogout}>
+            Logout
           </button>
-        )}
-
-        <button style={logoutBtn} onClick={handleLogout}>
-          Logout
-        </button>
+        </div>
       </div>
     </div>
-   </div>
-    
   );
 }
 
@@ -102,9 +113,8 @@ function Input({ label, value }) {
   );
 }
 
-
 const pageStyle = {
-  minHeight: "100vh",
+  // minHeight: "100vh",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -113,10 +123,10 @@ const pageStyle = {
 
 const cardStyle = {
   width: "100%",
-  maxWidth: "360px", 
-  background: "#fff",
+  maxWidth: "360px",
+  background: "#0F1016",
   borderRadius: "20px",
-  padding: "clamp(16px, 4vw, 20px)", 
+  padding: "clamp(16px, 4vw, 20px)",
   boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
 };
 
@@ -127,11 +137,12 @@ const avatarStyle = {
 };
 
 const inputStyle = {
-  width: "100%",
+  width: "90%",
   padding: "clamp(9px, 3vw, 10px)",
   marginTop: "6px",
   borderRadius: "10px",
   border: "1px solid #ddd",
+  color: "#FFFFFF",
   fontSize: "14px",
 };
 
@@ -149,6 +160,5 @@ const saveBtn = {
 
 const logoutBtn = {
   ...saveBtn,
-  background: "#eee",
+  background: "#FFCC03",
 };
-

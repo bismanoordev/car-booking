@@ -111,7 +111,7 @@ export default function CarDetails() {
 
       <div
         style={{
-          minHeight: "100vh",
+          // minHeight: "100vh",
           backgroundColor: "#FFFFFF",
           padding: "clamp(16px, 4vw, 30px)",
           display: "flex",
@@ -121,7 +121,7 @@ export default function CarDetails() {
         <div
           style={{
             width: "100%",
-            maxWidth: "720px", 
+            maxWidth: "720px",
             textAlign: "center",
             backgroundColor: "#0F1016",
             padding: "clamp(16px, 4vw, 25px)",
@@ -135,7 +135,7 @@ export default function CarDetails() {
               width: "100%",
               borderRadius: "16px",
               marginBottom: "10px",
-              maxHeight: "clamp(220px, 45vw, 420px)", 
+              maxHeight: "clamp(220px, 45vw, 420px)",
               objectFit: "cover",
             }}
           />
@@ -143,7 +143,7 @@ export default function CarDetails() {
           <h2
             style={{
               color: "#aaa",
-              fontSize: "clamp(20px, 5vw, 26px)", 
+              fontSize: "clamp(20px, 5vw, 26px)",
             }}
           >
             {car.name}
@@ -164,7 +164,7 @@ export default function CarDetails() {
           <div
             style={{
               display: "flex",
-              flexWrap: "wrap", 
+              flexWrap: "wrap",
               justifyContent: "center",
               gap: "12px",
               marginTop: "20px",

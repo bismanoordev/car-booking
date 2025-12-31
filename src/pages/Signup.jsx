@@ -2,6 +2,9 @@ import React from "react";
 import { useFirebase } from "../context/FirebaseContext";
 import Navbar from "../components/Navbar";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -17,6 +20,7 @@ const schema = yup.object().shape({
 
 const Signup = () => {
   const { signupUser } = useFirebase();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -32,6 +36,7 @@ const Signup = () => {
       const userCredential = await signupUser(data.email, data.password);
       toast.success(`Sign up successful! Welcome ${userCredential.user.email}`);
       reset();
+      navigate("/", { replace: true });
     } catch (err) {
       toast.error(err.message);
     }
@@ -43,7 +48,7 @@ const Signup = () => {
 
       <div
         style={{
-          minHeight: "100vh",
+          // minHeight: "100vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -54,6 +59,7 @@ const Signup = () => {
         <form
           onSubmit={handleSubmit(onSubmit)}
           style={{
+            backgroundColor:"#0F1016",
             width: "100%",
             maxWidth: "380px",
             padding: "clamp(20px, 5vw, 32px)", 
@@ -68,7 +74,7 @@ const Signup = () => {
             style={{
               textAlign: "center",
               fontWeight: "700",
-              color: "#0F1016",
+              color: "#FFFFFF",
               fontSize: "clamp(20px, 5vw, 24px)", 
             }}
           >
@@ -133,9 +139,9 @@ const Signup = () => {
             }}
           >
             Already have an account?{" "}
-            <span style={{ color: "#FFCC03", cursor: "pointer" }}>
+            <Link to="/login" style={{ color: "#FFCC03", cursor: "pointer" }}>
               Login
-            </span>
+            </Link>
           </p>
         </form>
       </div>

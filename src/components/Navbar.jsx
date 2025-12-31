@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useFirebase } from "../context/FirebaseContext";
 
 function Navbar() {
+  const { user } = useFirebase();
   const [isMobile, setIsMobile] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -44,24 +46,26 @@ function Navbar() {
       {!isMobile && (
         <>
           <div style={{ display: "flex", gap: "40px" }}>
-            {["Home", "Cards", "Profile"].map((item) => (
-              <Link
-                key={item}
-                to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                style={{
-                  color: "#FFFFFF",
-                  textDecoration: "none",
-                  fontWeight: "500",
-                }}
-                onMouseEnter={(e) => (e.target.style.color = "#FFCC03")}
-                onMouseLeave={(e) => (e.target.style.color = "#FFFFFF")}
-              >
-                {item}
-              </Link>
-            ))}
+            {["Home", ...(user ? ["Cars", "AddCar", "Profile"] : [])].map(
+              (item) => (
+                <Link
+                  key={item}
+                  to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                  style={{
+                    color: "#FFFFFF",
+                    textDecoration: "none",
+                    fontWeight: "500",
+                  }}
+                  onMouseEnter={(e) => (e.target.style.color = "#FFCC03")}
+                  onMouseLeave={(e) => (e.target.style.color = "#FFFFFF")}
+                >
+                  {item}
+                </Link>
+              )
+            )}
           </div>
 
-          <div style={{ display: "flex", gap: "10px" }}>
+          {/* <div style={{ display: "flex", gap: "10px" }}>
             {["Login", "Sign Up"].map((btn) => (
               <Link
                 key={btn}
@@ -78,7 +82,7 @@ function Navbar() {
                 {btn}
               </Link>
             ))}
-          </div>
+          </div> */}
         </>
       )}
 
@@ -100,6 +104,8 @@ function Navbar() {
       {isMobile && open && (
         <div
           style={{
+            width: "75%",
+            textAlign: "center",
             position: "absolute",
             top: "70px",
             right: "20px",
@@ -112,24 +118,26 @@ function Navbar() {
             boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
           }}
         >
-          {["Home", "Cards", "Profile", "Login", "Sign Up"].map((item) => (
-            <Link
-              key={item}
-              to={
-                item === "Home"
-                  ? "/"
-                  : `/${item.replace(" ", "").toLowerCase()}`
-              }
-              onClick={() => setOpen(false)}
-              style={{
-                color: "#FFFFFF",
-                textDecoration: "none",
-                fontWeight: "500",
-              }}
-            >
-              {item}
-            </Link>
-          ))}
+          {["Home", ...(user ? ["Cars", "AddCar", "Profile"] : [])].map(
+            (item) => (
+              <Link
+                key={item}
+                to={
+                  item === "Home"
+                    ? "/"
+                    : `/${item.replace(" ", "").toLowerCase()}`
+                }
+                onClick={() => setOpen(false)}
+                style={{
+                  color: "#FFFFFF",
+                  textDecoration: "none",
+                  fontWeight: "500",
+                }}
+              >
+                {item}
+              </Link>
+            )
+          )}
         </div>
       )}
     </nav>

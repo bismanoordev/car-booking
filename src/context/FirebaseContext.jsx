@@ -27,7 +27,6 @@ const firebaseConfig = {
   appId: "1:553925856030:web:d90b640a09a60baa60570f",
 };
 
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -36,7 +35,6 @@ export const FirebaseProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -45,7 +43,6 @@ export const FirebaseProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  
   const signupUser = (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
 
@@ -54,7 +51,29 @@ export const FirebaseProvider = ({ children }) => {
   const updateUserProfile = (updates) =>
     updateProfile(auth.currentUser, updates);
 
-  
+  const handelCreateNewListing = async (
+    availabletime,
+    starttime,
+    endtime,
+    description
+  ) => {
+    try {
+      const docRef = await addDoc(collection(db, "cars"), {
+        availableTime: availabletime,
+        startTime: starttime,
+        endTime: endtime,
+        description: description,
+        userId: user ? user.uid : "guest",
+        createdAt: serverTimestamp(),
+      });
+
+      console.log("Car added with ID:", docRef.id);
+      return true;
+    } catch (error) {
+      console.error("Error adding car:", error);
+      return false;
+    }
+  };
   const addBooking = async (bookingData) => {
     try {
       const docRef = await addDoc(collection(db, "bookings"), {
@@ -64,13 +83,11 @@ export const FirebaseProvider = ({ children }) => {
       });
 
       console.log(" Booking saved with ID:", docRef.id);
-     
     } catch (error) {
       console.error(" Error adding booking:", error);
-      return false; 
+      return false;
     }
   };
-
 
   const getBookings = async () => {
     const snapshot = await getDocs(collection(db, "bookings"));
@@ -91,6 +108,7 @@ export const FirebaseProvider = ({ children }) => {
         updateUserProfile,
         addBooking,
         getBookings,
+        handelCreateNewListing,
       }}
     >
       {children}

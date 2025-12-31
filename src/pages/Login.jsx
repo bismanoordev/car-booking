@@ -3,6 +3,8 @@ import { useFirebase } from "../context/FirebaseContext";
 import Navbar from "../components/Navbar";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -15,6 +17,7 @@ const schema = yup.object().shape({
 
 const Login = () => {
   const { auth } = useFirebase();
+  const navigate = useNavigate(); 
 
   const {
     register,
@@ -29,6 +32,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       toast.success("Login Successful");
+      navigate("/");
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         setError("email", { message: "User not found" });
@@ -51,7 +55,7 @@ const Login = () => {
 
       <div
         style={{
-          minHeight: "100vh",
+          // minHeight: "100vh",
           backgroundColor: "#FFFFFF",
           display: "flex",
           alignItems: "center",
@@ -63,7 +67,7 @@ const Login = () => {
           style={{
             width: "100%",
             maxWidth: "360px", 
-            backgroundColor: "#FFFFFF",
+            backgroundColor: "#0F1016",
             padding: "clamp(20px, 5vw, 30px)", 
             borderRadius: "14px",
             boxShadow: "0 20px 40px rgba(168, 158, 21, 0.56)",
@@ -73,7 +77,7 @@ const Login = () => {
             style={{
               textAlign: "center",
               marginBottom: "22px",
-              color: "#0F1016",
+              color: "#FFFFFF",
               fontWeight: "700",
               fontSize: "clamp(20px, 5vw, 24px)", 
             }}
