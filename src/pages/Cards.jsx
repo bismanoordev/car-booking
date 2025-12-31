@@ -49,7 +49,7 @@ function BasicExample() {
         style={{
           minHeight: "100vh",
           backgroundColor: "#FFFFFF",
-          padding: "clamp(6px, 2vw, 20px)", 
+          padding: "clamp(4px, 1vw, 20px)", 
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
           gap: "clamp(14px, 4vw, 20px)",
